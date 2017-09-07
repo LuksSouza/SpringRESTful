@@ -8,8 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
 public class Autor {
@@ -18,12 +22,19 @@ public class Autor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull(message = "O nome deve ser informado.")
 	private String nome;
 
+	@JsonInclude(Include.NON_NULL)
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "A data de nascimento deve ser informada.")
 	private Date nascimento;
 
+	@JsonInclude(Include.NON_NULL)
+	@NotNull(message = "A nascionalidade deve ser informada.")
 	private String nacionalidade;
 
+	@JsonInclude(Include.NON_EMPTY)
 	@OneToMany(mappedBy = "autor")
 	@JsonIgnore
 	private List<Livro> livros;
