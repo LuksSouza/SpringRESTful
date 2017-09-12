@@ -5,3 +5,4 @@ target/
 /.metadata/
 /.metadata/
 .recommenders/*
+/.recommenders/
