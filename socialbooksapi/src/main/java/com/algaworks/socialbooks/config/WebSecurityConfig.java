@@ -24,6 +24,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.httpBasic()
 			.and()
 				.csrf().disable();
+		
+		//Fonte:https://stackoverflow.com/questions/40165915/why-does-the-h2-console-in-spring-boot-show-a-blank-screen-after-logging-in
+		//Parece ser um bug do spring boot
+		http.headers().frameOptions().disable();
 	}
 
 }
